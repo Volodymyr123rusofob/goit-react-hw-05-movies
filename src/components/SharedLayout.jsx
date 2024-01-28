@@ -2,7 +2,7 @@ import { Outlet, NavLink } from 'react-router-dom';
 
 const SharedLayout = () => {
   return (
-    <container>
+    <div>
       <header>
         <nav>
           <NavLink to="/">Home</NavLink>
@@ -10,7 +10,7 @@ const SharedLayout = () => {
         </nav>
       </header>
       <Outlet />
-    </container>
+    </div>
   );
 };
 

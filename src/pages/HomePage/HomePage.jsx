@@ -1,64 +1,43 @@
 // import style from './homePage.module.css';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { trendMoviesToday } from 'components/app/getAllMovies';
+import MovieDetailsPage from 'pages/MovieDetailsPage/MovieDetailsPage';
 
 const HomePage = () => {
+  const [listMovies, setListMovies] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const getList = async () => {
+      try {
+        const { data } = await trendMoviesToday();
+        const arrayMovies = data.results;
+        setListMovies(arrayMovies);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getList();
+  }, []);
+
+  const renderMoviList = listMovies.map(({ title, id }) => {
+    return (
+      <li key={id}>
+        <NavLink to={`movies/${id}`}>{title}</NavLink>
+      </li>
+    );
+  });
+
   return (
     <main>
-      <h1>Hello</h1>
-      <ul>
-        <li>
-          <p>
-            1 <NavLink to="/movies/:id">Details</NavLink>
-          </p>
-        </li>
-        <li>
-          <p>
-            2 <NavLink to="/movies/:Id">Details</NavLink>
-          </p>
-        </li>
-        <li>
-          <p>
-            3 <NavLink to="/movies/:Id">Details</NavLink>
-          </p>
-        </li>
-        <li>
-          <p>
-            4 <NavLink to="/movies/:Id">Details</NavLink>
-          </p>
-        </li>
-        <li>
-          <p>
-            5 <NavLink to="/movies/:Id">Details</NavLink>
-          </p>
-        </li>
-        <li>
-          <p>
-            6 <NavLink to="/movies/:Id">Details</NavLink>
-          </p>
-        </li>
-        <li>
-          <p>
-            7 <NavLink to="/movies/:Id">Details</NavLink>
-          </p>
-        </li>
-        <li>
-          <p>
-            8 <NavLink to="/movies/:Id">Details</NavLink>
-          </p>
-        </li>
-        <li>
-          <p>
-            9 <NavLink to="/movies/:Id">Details</NavLink>
-          </p>
-        </li>
-        <li>
-          <p>
-            1 <NavLink to="/movies/:Id">Details</NavLink>0
-          </p>
-        </li>
-      </ul>
+      <h1>Tranding today</h1>
+      <ul>{renderMoviList}</ul>
     </main>
   );
 };
-<NavLink to="/movies/:id">Details</NavLink>;
+
 export default HomePage;
