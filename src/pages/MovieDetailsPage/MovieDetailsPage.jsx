@@ -1,6 +1,6 @@
 // import style from './movieDetailsPage.module.css';
 import { Link, Outlet } from 'react-router-dom';
-import { movieDetails } from 'components/app/getAllMovies';
+import { movieDetails } from 'components/api/getAllMovies';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -23,7 +23,7 @@ const MovieDetailsPage = () => {
       }
     };
     getList();
-  }, []);
+  }, [movieId]);
 
   const {
     title,
@@ -37,6 +37,8 @@ const MovieDetailsPage = () => {
 
   return (
     <main>
+      {loading && <p>...Loasding</p>}
+      {error && <p>Error: {error}</p>}
       <img
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={original_title}

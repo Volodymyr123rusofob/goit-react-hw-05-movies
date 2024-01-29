@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getCredits } from 'components/app/getAllMovies';
+import { getCredits } from 'components/api/getAllMovies';
 
 const CastPage = () => {
   const [cast, setCast] = useState([]);
@@ -22,9 +22,8 @@ const CastPage = () => {
       }
     };
     getList();
-  }, []);
+  }, [movieId]);
 
-  console.log(cast);
   const castRender = () => {
     const actors = cast.map(
       ({ id, profile_path, original_name, name, character }) => {
@@ -43,6 +42,12 @@ const CastPage = () => {
     return actors;
   };
 
-  return <ul>{cast?.length && castRender()}</ul>;
+  return (
+    <ul>
+      {loading && <p>...Loasding</p>}
+      {error && <p>Error: {error}</p>}
+      {cast?.length && castRender()}
+    </ul>
+  );
 };
 export default CastPage;

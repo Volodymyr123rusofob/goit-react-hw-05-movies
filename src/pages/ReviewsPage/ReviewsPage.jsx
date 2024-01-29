@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getReviews } from 'components/app/getAllMovies';
+import { getReviews } from 'components/api/getAllMovies';
 
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -22,13 +22,12 @@ const ReviewsPage = () => {
       }
     };
     getList();
-  }, []);
-  console.log(reviews);
+  }, [movieId]);
 
   const reviewsRender = () => {
-    const coment = reviews.map(({ author, content }) => {
+    const coment = reviews.map(({ author, content, id }) => {
       return (
-        <li key={author}>
+        <li key={id}>
           <h2>{author}</h2>
           <p>{content}</p>
         </li>
@@ -37,7 +36,17 @@ const ReviewsPage = () => {
     return coment;
   };
 
-  return <ul>{reviews?.length && reviewsRender()}</ul>;
+  return (
+    <ul>
+      {loading && <p>...Loasding</p>}
+      {error && <p>Error: {error}</p>}
+      {reviews.length ? (
+        reviewsRender()
+      ) : (
+        <p>We don't have any reviews for this movies.</p>
+      )}
+    </ul>
+  );
 };
 
 export default ReviewsPage;

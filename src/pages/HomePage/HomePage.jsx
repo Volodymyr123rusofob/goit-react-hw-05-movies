@@ -1,8 +1,7 @@
 // import style from './homePage.module.css';
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { trendMoviesToday } from 'components/app/getAllMovies';
-import MovieDetailsPage from 'pages/MovieDetailsPage/MovieDetailsPage';
+import { trendMoviesToday } from 'components/api/getAllMovies';
 
 const HomePage = () => {
   const [listMovies, setListMovies] = useState([]);
@@ -34,6 +33,8 @@ const HomePage = () => {
 
   return (
     <main>
+      {loading && <p>...Loasding</p>}
+      {error && <p>Error: {error}</p>}
       <h1>Tranding today</h1>
       <ul>{renderMoviList}</ul>
     </main>
