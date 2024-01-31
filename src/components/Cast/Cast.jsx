@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getCredits } from 'components/api/getAllMovies';
 
-const CastPage = () => {
+export const CastPage = () => {
   const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -30,7 +30,11 @@ const CastPage = () => {
         return (
           <li key={id}>
             <img
-              src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+              src={
+                profile_path
+                  ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                  : 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg'
+              }
               alt={original_name}
             />
             <h2>{name}</h2>
@@ -50,4 +54,3 @@ const CastPage = () => {
     </ul>
   );
 };
-export default CastPage;

@@ -1,0 +1,28 @@
+.div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  background-color: #1daad4;
+  padding: 10px;
+}
+
+.nav {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 20px;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #3498db;
+}

@@ -1,9 +1,9 @@
-// import style from './homePage.module.css';
+import style from './home.module.css';
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { trendMoviesToday } from 'components/api/getAllMovies';
 
-const HomePage = () => {
+export const Home = () => {
   const [listMovies, setListMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -25,20 +25,20 @@ const HomePage = () => {
 
   const renderMoviList = listMovies.map(({ title, id }) => {
     return (
-      <li key={id}>
-        <NavLink to={`movies/${id}`}>{title}</NavLink>
+      <li key={id} className={style.li}>
+        <NavLink to={`movies/${id}`} className={style.link}>
+          {title}
+        </NavLink>
       </li>
     );
   });
 
   return (
-    <main>
-      {loading && <p>...Loasding</p>}
-      {error && <p>Error: {error}</p>}
-      <h1>Tranding today</h1>
-      <ul>{renderMoviList}</ul>
-    </main>
+    <div className={style.div}>
+      {loading && <p className={style.pLoad}>...Loading</p>}
+      {error && <p className={style.error}>Error: {error}</p>}
+      <h1 className={style.h1}>Trending today</h1>
+      <ul className={style.list}>{renderMoviList}</ul>
+    </div>
   );
 };
-
-export default HomePage;

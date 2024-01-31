@@ -1,12 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
+import { HomePage } from 'pages/HomePage';
+import { MoviesPage } from 'pages/MoviesPage';
+import { MovieDetailsPage } from 'pages/MovieDetailsPage';
+import { NotFound } from 'pages/NotFoundPage';
+import { CastPage } from 'components/Cast/Cast';
+import { ReviewsPage } from 'components/Reviews/Reviews';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+
 import style from './app.module.css';
-import HomePage from 'pages/HomePage/HomePage';
-import MoviesPage from 'pages/MoviesPage/MoviesPage';
-import MovieDetailsPage from 'pages/MovieDetailsPage/MovieDetailsPage';
-import NotFound from 'pages/NotFoundPage/NotFoundPage';
-import CastPage from 'pages/CastPage/CastPage';
-import ReviewsPage from 'pages/ReviewsPage/ReviewsPage';
-import SharedLayout from './SharedLayout';
 
 const App = () => {
   return (

@@ -1,0 +1,46 @@
+.div {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.pLoad {
+  font-size: 18px;
+  color: #3498db;
+  text-align: center;
+}
+
+.error {
+  font-size: 18px;
+  color: #e74c3c;
+  text-align: center;
+}
+
+.h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.li {
+  margin-bottom: 10px;
+}
+
+.link {
+  text-decoration: none;
+  color: #3498db;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #73cc0e;
+}

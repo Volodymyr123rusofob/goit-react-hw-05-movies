@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
 import { searchMovies } from 'components/api/getAllMovies';
+import { useSearchParams } from 'react-router-dom';
 
-const FormSearchMovie = ({ setItemMovie }) => {
+import style from './form.module.css';
+
+export const FormSearchMovie = ({ setItemMovie }) => {
   const [search, setSearch] = useState('');
-  const [results, setResults] = useState('');
+  // const [results, setResults] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const results = searchParams.get('search');
+  console.log(search);
 
   const handleChange = ({ target }) => {
     const { value } = target;
@@ -14,8 +22,8 @@ const FormSearchMovie = ({ setItemMovie }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    setResults(search);
-    setSearch('');
+    // setResults(search);
+    setSearchParams({ search });
   };
 
   useEffect(() => {
@@ -39,15 +47,16 @@ const FormSearchMovie = ({ setItemMovie }) => {
     <main>
       {loading && <p>...Loasding</p>}
       {error && <p>Error: {error}</p>}
-      <form onSubmit={handleSubmit}>
-        <button type="submit">
-          <span>Search</span>
+      <form className={style.form} onSubmit={handleSubmit}>
+        <button className={style.button} type="submit">
+          <span className={style.span}>Search</span>
         </button>
 
         <input
           name="search"
           value={search}
           onChange={handleChange}
+          className={style.input}
           type="text"
           autoComplete="off"
           autoFocus
@@ -58,5 +67,3 @@ const FormSearchMovie = ({ setItemMovie }) => {
     </main>
   );
 };
-
-export default FormSearchMovie;
