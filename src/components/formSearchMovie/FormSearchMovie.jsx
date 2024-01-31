@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import style from './form.module.css';
 
-export const FormSearchMovie = ({ setItemMovie }) => {
+const FormSearchMovie = ({ setItemMovie }) => {
   const [search, setSearch] = useState('');
   // const [results, setResults] = useState('');
   const [error, setError] = useState(null);
@@ -67,3 +67,4 @@ export const FormSearchMovie = ({ setItemMovie }) => {
     </main>
   );
 };
+export default FormSearchMovie;
