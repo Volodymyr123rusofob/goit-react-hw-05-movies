@@ -1,7 +1,7 @@
 import style from './movies.module.css';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { FormSearchMovie } from '../FormSearchMovie/FormSearchMovie';
+import { FormSearchMovie } from 'components/FormSearchMovie/FormSearchMovie';
 
 export const Movies = () => {
   const [itemMovie, setItemMovie] = useState([]);
