@@ -1,7 +1,7 @@
 import style from './home.module.css';
 import { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
 import { trendMoviesToday } from 'components/api/getAllMovies';
+import { Movies } from 'components/Movies/Movies';
 
 export const Home = () => {
   const [listMovies, setListMovies] = useState([]);
@@ -23,22 +23,14 @@ export const Home = () => {
     getList();
   }, []);
 
-  const renderMoviList = listMovies.map(({ title, id }) => {
-    return (
-      <li key={id} className={style.li}>
-        <NavLink to={`movies/${id}`} className={style.link}>
-          {title}
-        </NavLink>
-      </li>
-    );
-  });
-
   return (
     <div className={style.div}>
       {loading && <p className={style.pLoad}>...Loading</p>}
       {error && <p className={style.error}>Error: {error}</p>}
       <h1 className={style.h1}>Trending today</h1>
-      <ul className={style.list}>{renderMoviList}</ul>
+      <ul className={style.list}>
+        {listMovies?.length && <Movies listMovi={listMovies} url="movies" />}
+      </ul>
     </div>
   );
 };

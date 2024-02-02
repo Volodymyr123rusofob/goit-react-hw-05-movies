@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getCredits } from 'components/api/getAllMovies';
 
-export const CastPage = () => {
+const CastPage = () => {
   const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -54,3 +54,5 @@ export const CastPage = () => {
     </ul>
   );
 };
+
+export default CastPage;

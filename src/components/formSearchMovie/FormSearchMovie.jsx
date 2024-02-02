@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
 import { searchMovies } from 'components/api/getAllMovies';
 import { useSearchParams } from 'react-router-dom';
+import { Movies } from 'components/Movies/Movies';
 
 import style from './form.module.css';
 
-const FormSearchMovie = ({ setItemMovie }) => {
+export const FormSearchMovie = () => {
   const [search, setSearch] = useState('');
-  // const [results, setResults] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [listMovies, setListMovies] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const results = searchParams.get('search');
-  console.log(search);
 
   const handleChange = ({ target }) => {
     const { value } = target;
@@ -22,17 +22,15 @@ const FormSearchMovie = ({ setItemMovie }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // setResults(search);
     setSearchParams({ search });
   };
 
   useEffect(() => {
-    if (results === '') return;
-
+    if (!results) return;
     const getList = async () => {
       try {
         const { data } = await searchMovies(results);
-        setItemMovie(data.results);
+        setListMovies(data.results);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -41,7 +39,9 @@ const FormSearchMovie = ({ setItemMovie }) => {
     };
 
     getList();
-  }, [results, setItemMovie]);
+  }, [results]);
+
+  console.log(listMovies);
 
   return (
     <main>
@@ -64,7 +64,7 @@ const FormSearchMovie = ({ setItemMovie }) => {
           required
         />
       </form>
+      {listMovies.length > 0 ? <Movies listMovi={listMovies} /> : ''}
     </main>
   );
 };
-export default FormSearchMovie;

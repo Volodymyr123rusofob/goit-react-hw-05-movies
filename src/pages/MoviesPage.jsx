@@ -1,9 +1,11 @@
-import { Movies } from 'components/Movies/Movies';
+import { FormSearchMovie } from 'components/FormSearchMovie/FormSearchMovie';
 
-export const MoviesPage = () => {
+const MoviesPage = () => {
   return (
     <main>
-      <Movies />
+      <FormSearchMovie />
     </main>
   );
 };
+
+export default MoviesPage;
