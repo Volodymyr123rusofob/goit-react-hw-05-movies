@@ -1,4 +1,4 @@
-import { FormSearchMovie } from 'components/Movies/FormSearchMovie/FormSearchMovie';
+import { FormSearchMovie } from 'components/FormSearchMovie/FormSearchMovie';
 
 const MoviesPage = () => {
   return (
