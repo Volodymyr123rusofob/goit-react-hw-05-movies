@@ -41,8 +41,6 @@ export const FormSearchMovie = () => {
     getList();
   }, [results]);
 
-  console.log(listMovies);
-
   return (
     <main>
       {loading && <p>...Loasding</p>}

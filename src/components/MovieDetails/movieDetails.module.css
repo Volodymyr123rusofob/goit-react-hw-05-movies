@@ -2,8 +2,9 @@
   margin-bottom: 8px;
 }
 
-.button {
+.linkBack {
   background-color: #3498db;
+  max-width: 80px;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -13,11 +14,14 @@
   transition: background-color 0.3s ease;
 }
 
-.button:hover {
+.linkBack:hover {
   background-color: #2078c4;
 }
 
 .div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;

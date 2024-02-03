@@ -26,3 +26,7 @@
 .link:hover {
   color: #3498db;
 }
+
+.link:global(.active) {
+  color: rgb(5, 240, 87);
+}

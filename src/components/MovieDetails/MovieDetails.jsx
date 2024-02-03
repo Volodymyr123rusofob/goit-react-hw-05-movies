@@ -1,16 +1,19 @@
 import style from './movieDetails.module.css';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { movieDetails } from 'components/api/getAllMovies';
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
 
 export const MovieDetails = () => {
   const [detailsMovie, setDetailsMovie] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const location = useLocation();
+  const backLinkRef = useRef(location.state?.from ?? '/');
+  console.log(location);
+
   const { movieId } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getList = async () => {
@@ -52,14 +55,10 @@ export const MovieDetails = () => {
     <>
       {loading && <p>...Loasding</p>}
       {error && <p>Error: {error}</p>}
-      <button
-        className={style.button}
-        onClick={() => navigate(-1)}
-        type="button"
-      >
-        GoBack
-      </button>
       <div className={style.div}>
+        <Link className={style.linkBack} to={backLinkRef.current}>
+          GoBack
+        </Link>
         <img
           className={style.img}
           src={`https://image.tmdb.org/t/p/w500${poster_path}`}
